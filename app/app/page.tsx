@@ -3,7 +3,7 @@ import { CalendarDays, QrCode } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
 const member = {
-  name: "Diamond",
+  name: "China Meili",
   id: "DBS-0001",
   tier: "VIP Member"
 };
