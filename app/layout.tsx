@@ -9,16 +9,17 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "DBS Social",
+    title: "The DBS Social Club",
   },
   icons: {
-    icon: "/icons/icon-192.png",
-    apple: "/icons/icon-192.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07172f",
+  themeColor: "#070707",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-[#07172f]">
+    <html lang="en" className="bg-[#070707]">
       <body>
         <PWARegister />
         {children}
