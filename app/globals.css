@@ -6,12 +6,13 @@
 
 html {
   scroll-behavior: smooth;
+  background: #000000;
 }
 
 body {
   margin: 0;
-  background: #07172f;
-  color: white;
+  background: #000000;
+  color: #ffffff;
 }
 
 button,
