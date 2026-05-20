@@ -1,21 +1,35 @@
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #070707; }
+body { margin: 0; background: #070707; color: #ffffff; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+::selection { background: #ff5a1f; color: #000; }
+
+.dbs-screen {
+  background: radial-gradient(circle at 50% 0%, rgba(255,90,31,.22), transparent 34%), linear-gradient(180deg,#111 0%,#050505 100%);
+  color: white;
 }
 
-html {
-  scroll-behavior: smooth;
-  background: #000000;
+.dbs-card {
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.07);
+  box-shadow: 0 24px 80px rgba(0,0,0,.35);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
 }
 
-body {
-  margin: 0;
-  background: #000000;
-  color: #ffffff;
+.dbs-white-card {
+  background: white;
+  color: black;
+  box-shadow: 0 22px 70px rgba(0,0,0,.22);
+  border-radius: 28px;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+.dbs-pill {
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(16px);
 }
