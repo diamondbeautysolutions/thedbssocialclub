@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     title: "The DBS Social Club",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/dbs-social-logo.svg",
+    shortcut: "/dbs-social-logo.svg",
+    apple: "/dbs-social-logo.svg",
   },
 };
 
