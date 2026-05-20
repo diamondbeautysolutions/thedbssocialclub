@@ -1,163 +1,126 @@
 import Link from "next/link";
-import {
-  Bell,
-  Crown,
-  FileText,
-  MessageCircle,
-  Plus,
-  QrCode,
-  Sparkles,
-  TicketCheck
-} from "lucide-react";
-import { QRCodeSVG } from "qrcode.react";
+import { ArrowRight, CalendarDays, Crown, QrCode, ShieldCheck, Sparkles } from "lucide-react";
 
-export default function AppHomePage() {
-  const qrValue = JSON.stringify({
-    id: "DBS-0001",
-    name: "Diamond",
-    membership: "VIP Member",
-    status: "Active"
-  });
-
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#d9d9d9] px-1 pb-4 pt-3 text-black">
-      <div className="relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-[#d9d9d9] px-4 pb-6 pt-5 shadow-2xl">
-        <div className="absolute left-5 top-5 text-3xl leading-none">☼</div>
-        <div className="absolute right-5 top-5 flex items-center gap-3 rounded-full bg-white/70 px-3 py-1 text-xs shadow-sm">
-          <span>VIP</span>
-          <span className="h-4 w-px bg-black/30" />
-          <span>01</span>
-        </div>
-
-        <div className="mt-12 text-center">
+    <main className="min-h-screen bg-neutral-950 text-white">
+      <section className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8">
+        <header className="flex items-center justify-between">
           <img
             src="/dbs-social-logo.svg"
             alt="The DBS Social Club"
-            className="mx-auto h-40 w-auto object-contain text-black"
+            className="h-16 w-auto invert"
           />
-          <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-black/30">
-            Beauty. Wellness. Culture. Community.
-          </p>
-        </div>
-
-        <div className="mt-8 text-center">
-          <h1 className="text-4xl font-light tracking-tight">
-            Welcome back, Diamond
-          </h1>
-          <p className="mt-2 text-base text-black/55">
-            diamond@thedbssocial.com
-          </p>
-        </div>
-
-        <div className="mt-7 flex items-center justify-between text-2xl leading-none">
-          <Plus className="h-5 w-5" />
-          <Plus className="h-5 w-5" />
-        </div>
-
-        <section className="mt-4 grid grid-cols-2 gap-3">
-          <Link
-            href="/app/member-card"
-            className="min-h-[160px] rounded-xl bg-white p-4 text-black shadow-lg"
-          >
-            <h2 className="text-3xl font-medium leading-none">Member</h2>
-            <p className="mt-2 text-sm text-black/55">Digital card</p>
-            <div className="mt-7 flex items-end justify-between">
-              <QrCode className="h-16 w-16" />
-              <span className="text-3xl">→</span>
-            </div>
-          </Link>
 
           <Link
-            href="/app/digital-products"
-            className="min-h-[160px] rounded-xl bg-black p-4 text-white shadow-lg"
+            href="/auth/login"
+            className="rounded-full border border-white/10 bg-white/10 px-5 py-2 text-sm text-white"
           >
-            <h2 className="text-3xl font-medium leading-none">Digital</h2>
-            <p className="mt-2 text-sm text-white/60">Classes + files</p>
-            <div className="mt-7 flex items-end justify-between">
-              <FileText className="h-16 w-16" />
-              <span className="text-3xl">→</span>
-            </div>
+            Member Login
           </Link>
-        </section>
+        </header>
 
-        <section className="mt-4 rounded-xl bg-white p-4 text-black shadow-lg">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-3xl font-medium leading-none">VIP</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.22em] text-black/45">
-                Membership Card
-              </p>
-            </div>
-            <Crown className="h-7 w-7" />
-          </div>
-
-          <div className="mt-5 grid grid-cols-[1fr_auto] items-end gap-4">
-            <div className="grid grid-cols-3 gap-3 text-sm">
-              <div>
-                <p className="text-black/45">Points</p>
-                <p className="mt-1 text-2xl font-medium">0</p>
-              </div>
-              <div>
-                <p className="text-black/45">Balance</p>
-                <p className="mt-1 text-2xl font-medium">0</p>
-              </div>
-              <div>
-                <p className="text-black/45">Level</p>
-                <p className="mt-1 text-2xl font-medium">VIP</p>
-              </div>
-            </div>
-
-            <div className="rounded-lg border border-black/10 bg-white p-2">
-              <QRCodeSVG value={qrValue} size={70} includeMargin />
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-4 rounded-xl bg-black p-4 text-white shadow-lg">
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium uppercase tracking-[0.18em]">
-              Social Card
+        <div className="grid flex-1 items-center gap-12 py-16 md:grid-cols-2">
+          <div>
+            <p className="mb-4 inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-orange-100">
+              Beauty. Wellness. Culture. Connection.
             </p>
-            <p className="text-lg">0/5</p>
+
+            <h1 className="max-w-2xl text-5xl font-semibold leading-none tracking-tight md:text-7xl">
+              Your DBS Social Club membership lives here.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/60">
+              Access your member card, event check-ins, VIP perks, digital products,
+              community updates, and DBS Social Club information in one clean app
+              experience.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/auth/login"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-black"
+              >
+                Enter Member Portal <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-between">
-            {[0, 1, 2, 3, 4].map((item) => (
-              <Sparkles key={item} className="h-5 w-5 text-white/45" />
-            ))}
-            <TicketCheck className="h-6 w-6 text-white" />
+          <div className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl">
+            <div className="rounded-3xl bg-neutral-900 p-6 shadow-inner">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-white/45">
+                    Member Card
+                  </p>
+                  <h3 className="mt-2 text-2xl font-semibold">
+                    DBS Social Club
+                  </h3>
+                </div>
+
+                <Crown className="h-9 w-9 text-orange-200" />
+              </div>
+
+              <div className="mt-12 rounded-3xl bg-white p-6 text-black shadow-xl">
+                <QrCode className="mx-auto h-36 w-36" />
+                <p className="mt-4 text-center text-xs uppercase tracking-widest text-black/50">
+                  Scan for Entry
+                </p>
+              </div>
+
+              <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-white/40">Status</p>
+                  <p className="font-semibold">Active</p>
+                </div>
+
+                <div>
+                  <p className="text-white/40">Tier</p>
+                  <p className="font-semibold">Member</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-
-        <p className="mt-4 text-center text-[10px] uppercase tracking-[0.25em] text-black/25">
-          The conversation continues here
-        </p>
-
-        <div className="mt-4 flex items-center justify-between text-2xl leading-none">
-          <Plus className="h-5 w-5" />
-          <Plus className="h-5 w-5" />
         </div>
 
-        <section className="mt-3 grid grid-cols-2 gap-3">
-          <Link
-            href="/app/info-chat"
-            className="rounded-xl bg-white p-4 text-black shadow-lg"
-          >
-            <MessageCircle className="h-7 w-7" />
-            <p className="mt-4 text-lg font-medium">Ask DBS</p>
-            <p className="mt-1 text-xs text-black/50">Info chat</p>
-          </Link>
+        <section className="grid gap-4 pb-8 md:grid-cols-3">
+          <FeatureCard
+            icon={<CalendarDays />}
+            title="Private Events"
+            text="RSVP, view updates, and check in with your member QR code."
+          />
 
-          <Link
-            href="/app/events"
-            className="rounded-xl bg-white p-4 text-black shadow-lg"
-          >
-            <Bell className="h-7 w-7" />
-            <p className="mt-4 text-lg font-medium">Events</p>
-            <p className="mt-1 text-xs text-black/50">RSVP + check in</p>
-          </Link>
+          <FeatureCard
+            icon={<Sparkles />}
+            title="Digital Products"
+            text="Access DBS classes, downloads, templates, and VIP-only files."
+          />
+
+          <FeatureCard
+            icon={<ShieldCheck />}
+            title="Member Support"
+            text="Ask questions, manage your profile, and stay connected to the club."
+          />
         </section>
-      </div>
+      </section>
+    </main>
+  );
+}
+
+function FeatureCard({
+  icon,
+  title,
+  text
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl">
+      <div className="mb-4 text-orange-200">{icon}</div>
+      <h3 className="font-semibold">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-white/55">{text}</p>
     </div>
   );
 }
