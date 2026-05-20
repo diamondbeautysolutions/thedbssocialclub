@@ -17,7 +17,7 @@ export default function AppBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#07172f]/95 backdrop-blur-xl">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-black/95 backdrop-blur-xl">
       <div className="mx-auto grid max-w-md grid-cols-6 px-2 py-2">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -29,7 +29,7 @@ export default function AppBottomNav() {
               href={item.href}
               className={`flex flex-col items-center justify-center rounded-2xl px-1 py-2 text-[10px] transition ${
                 isActive
-                  ? "bg-[#f5efe3] text-[#07172f]"
+                  ? "bg-white text-black"
                   : "text-white/50 hover:text-white"
               }`}
             >
