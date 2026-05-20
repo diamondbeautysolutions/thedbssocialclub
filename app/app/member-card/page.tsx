@@ -1,60 +1,60 @@
-import { Crown, QrCode } from "lucide-react";
+import DBSLogo from "@/components/dbs-logo";
+import { QRCodeSVG } from "qrcode.react";
+
+const memberData = {
+  id: "DBS-0001",
+  name: "Diamond",
+  membership: "VIP Member"
+};
 
 export default function MemberCardPage() {
+  const qrValue = JSON.stringify(memberData);
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-white">
       <div>
         <p className="text-sm uppercase tracking-[0.3em] text-white/50">
           Digital Card
         </p>
-        <h1 className="mt-2 text-3xl font-semibold">Member Card</h1>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight">
+          Member Access
+        </h1>
       </div>
 
-      <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#091f44] to-[#020817] p-6 shadow-2xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-white/50">
-              The DBS
-            </p>
-            <h2 className="text-xl font-semibold">Social Club</h2>
-          </div>
+      <section className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white p-6 text-black shadow-2xl">
+        <div className="flex items-center justify-between gap-4">
+          <DBSLogo />
 
-          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/10">
-            <Crown className="h-7 w-7 text-[#d7b56d]" />
+          <div className="rounded-full border border-black px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em]">
+            VIP
           </div>
         </div>
 
-        <div className="mt-10 rounded-[1.5rem] bg-white p-5 text-[#07172f]">
-          <div className="flex items-center justify-center">
-            <QrCode className="h-32 w-32" />
-          </div>
+        <div className="mt-10 flex justify-center rounded-[2rem] border border-black bg-white p-6">
+          <QRCodeSVG value={qrValue} size={220} includeMargin />
+        </div>
 
-          <p className="mt-4 text-center text-xs uppercase tracking-[0.25em] text-[#07172f]/60">
-            Scan for entry
+        <div className="mt-8 border-t border-black/10 pt-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-black/50">
+            Member Name
           </p>
-        </div>
 
-        <div className="mt-8">
-          <p className="text-sm text-white/50">Member Name</p>
-          <h3 className="text-2xl font-semibold">DBS Member</h3>
-        </div>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            {memberData.name}
+          </h2>
 
-        <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <p className="text-white/40">Status</p>
-            <p className="font-semibold">Active</p>
+          <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-black/40">Status</p>
+              <p className="font-semibold">Active</p>
+            </div>
+
+            <div>
+              <p className="text-black/40">Membership</p>
+              <p className="font-semibold">{memberData.membership}</p>
+            </div>
           </div>
-
-          <div>
-            <p className="text-white/40">Tier</p>
-            <p className="font-semibold">Member</p>
-          </div>
         </div>
-
-        <p className="mt-8 text-xs leading-5 text-white/40">
-          This card is used for DBS Social Club event entry, member perks, and
-          check-in verification.
-        </p>
       </section>
     </div>
   );
