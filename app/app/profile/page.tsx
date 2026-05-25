@@ -1,15 +1,18 @@
-import { Crown, Mail, Phone, ShieldCheck, User } from "lucide-react";
+"use client";
 
-const member = {
-  name: "China Meili",
-  email: "chinameili00@gmail.com",
-  phone: "(443) 303-9809",
-  tier: "Admin",
-  status: "Active",
-  id: "DBS-0001"
-};
+import { useState } from "react";
+import { Crown, Mail, Phone, Save, ShieldCheck, User } from "lucide-react";
 
 export default function ProfilePage() {
+  const [profile, setProfile] = useState({
+    name: "China Meili",
+    email: "chinameili00@gmail.com",
+    phone: "(443) 303-9809",
+    tier: "Admin",
+    status: "Active",
+    id: "DBS-0001"
+  });
+
   return (
     <div className="space-y-6 text-white">
       <div>
@@ -17,34 +20,45 @@ export default function ProfilePage() {
         <h1 className="mt-5 text-3xl font-semibold">Profile</h1>
       </div>
 
-      <section className="rounded-[2rem] border border-white/10 bg-white/10 p-6 text-center shadow-2xl">
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-white/10 bg-white/10">
-          <User className="h-10 w-10 text-orange-100" />
+      <section className="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl">
+        <div className="space-y-5">
+          <InputField label="Full Name" value={profile.name} onChange={(value: string) => setProfile({ ...profile, name: value })} icon={<User className="h-5 w-5" />} />
+          <InputField label="Email" value={profile.email} onChange={(value: string) => setProfile({ ...profile, email: value })} icon={<Mail className="h-5 w-5" />} />
+          <InputField label="Phone" value={profile.phone} onChange={(value: string) => setProfile({ ...profile, phone: value })} icon={<Phone className="h-5 w-5" />} />
+
+          <div className="grid grid-cols-2 gap-4">
+            <InfoCard label="Membership" value={profile.tier} icon={<Crown className="h-5 w-5" />} />
+            <InfoCard label="Status" value={profile.status} icon={<ShieldCheck className="h-5 w-5" />} />
+          </div>
+
+          <InfoCard label="Member ID" value={profile.id} icon={<User className="h-5 w-5" />} />
+
+          <button className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#e8ddc8] px-5 py-4 font-semibold text-black">
+            <Save className="h-5 w-5" /> Save Profile
+          </button>
         </div>
-
-        <h2 className="mt-4 text-2xl font-semibold">{member.name}</h2>
-        <p className="mt-1 text-sm text-white/50">{member.email}</p>
-      </section>
-
-      <section className="space-y-3">
-        <ProfileRow icon={<Crown />} label="Membership Tier" value={member.tier} />
-        <ProfileRow icon={<ShieldCheck />} label="Status" value={member.status} />
-        <ProfileRow icon={<Mail />} label="Email" value={member.email} />
-        <ProfileRow icon={<Phone />} label="Phone" value={member.phone} />
-        <ProfileRow icon={<User />} label="Member ID" value={member.id} />
       </section>
     </div>
   );
 }
 
-function ProfileRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function InputField({ label, value, onChange, icon }: any) {
   return (
-    <div className="flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/10 p-5 shadow-xl">
-      <div className="flex items-center gap-3">
+    <label className="block">
+      <span className="mb-2 block text-sm text-white/60">{label}</span>
+      <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
         <div className="text-orange-100">{icon}</div>
-        <p className="text-sm text-white/60">{label}</p>
+        <input value={value} onChange={(e) => onChange(e.target.value)} className="w-full bg-transparent text-white outline-none" />
       </div>
-      <p className="font-semibold">{value}</p>
+    </label>
+  );
+}
+
+function InfoCard({ label, value, icon }: any) {
+  return (
+    <div className="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 shadow-xl">
+      <div className="flex items-center gap-3 text-orange-100">{icon}<p className="text-sm text-white/60">{label}</p></div>
+      <p className="mt-3 font-semibold">{value}</p>
     </div>
   );
 }
