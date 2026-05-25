@@ -1,24 +1,29 @@
+import Link from "next/link";
 import { CalendarDays, FileText, ShieldCheck, Users } from "lucide-react";
 
 const adminTools = [
   {
     title: "Manage Memberships",
     description: "Edit member tiers, IDs, access, and account information.",
+    href: "/app/admin/memberships",
     icon: <Users className="h-6 w-6" />
   },
   {
     title: "Manage Events",
     description: "Create events, update RSVPs, and manage check-ins.",
+    href: "/app/admin/events",
     icon: <CalendarDays className="h-6 w-6" />
   },
   {
     title: "Products & Classes",
     description: "Control digital drops, VIP products, and class access.",
+    href: "/app/admin/products",
     icon: <FileText className="h-6 w-6" />
   },
   {
     title: "Admin Notes & Access",
     description: "Manage permissions, notes, and internal member access.",
+    href: "/app/admin/access",
     icon: <ShieldCheck className="h-6 w-6" />
   }
 ];
@@ -37,7 +42,7 @@ export default function AdminPage() {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e8ddc8] text-black">{tool.icon}</div>
           <h2 className="mt-5 text-2xl font-semibold">{tool.title}</h2>
           <p className="mt-2 text-sm leading-7 text-white/55">{tool.description}</p>
-          <button className="mt-5 rounded-full bg-[#e8ddc8] px-5 py-3 text-sm font-semibold text-black">Open</button>
+          <Link href={tool.href} className="mt-5 inline-flex rounded-full bg-[#e8ddc8] px-5 py-3 text-sm font-semibold text-black">Open</Link>
         </section>
       ))}
     </div>
