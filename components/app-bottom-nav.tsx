@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Home, IdCard, MessageCircle, ShoppingBag, User } from "lucide-react";
+import { CalendarDays, Home, IdCard, MessageCircle, QrCode, ShoppingBag, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -9,7 +9,7 @@ const navItems = [
   { label: "Card", href: "/app/member-card", icon: IdCard },
   { label: "Events", href: "/app/events", icon: CalendarDays },
   { label: "Products", href: "/app/digital-products", icon: ShoppingBag },
-  { label: "Chat", href: "/app/info-chat", icon: MessageCircle },
+  { label: "Scan", href: "/app/admin/scanner", icon: QrCode },
   { label: "Profile", href: "/app/profile", icon: User }
 ];
 
@@ -28,9 +28,7 @@ export default function AppBottomNav() {
               key={item.href}
               href={item.href}
               className={`flex flex-col items-center justify-center rounded-2xl px-1 py-2 text-[10px] transition ${
-                isActive
-                  ? "bg-white text-black"
-                  : "text-white/50 hover:text-white"
+                isActive ? "bg-[#e8ddc8] text-black" : "text-white/50 hover:text-white"
               }`}
             >
               <Icon className="mb-1 h-5 w-5" />
