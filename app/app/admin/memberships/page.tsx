@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Save, UserPlus } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Check, Save, UserPlus } from "lucide-react";
 
 const initialMembers = [
   {
@@ -16,9 +16,36 @@ const initialMembers = [
 
 export default function ManageMembershipsPage() {
   const [members, setMembers] = useState(initialMembers);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const savedMembers = localStorage.getItem("dbs-members");
+    if (savedMembers) setMembers(JSON.parse(savedMembers));
+  }, []);
 
   function updateMember(index: number, field: string, value: string) {
     setMembers((prev) => prev.map((member, i) => (i === index ? { ...member, [field]: value } : member)));
+  }
+
+  function saveMembers() {
+    localStorage.setItem("dbs-members", JSON.stringify(members));
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }
+
+  function addNewMember() {
+    const nextNumber = String(members.length + 1).padStart(4, "0");
+    setMembers((prev) => [
+      ...prev,
+      {
+        id: `DBS-${nextNumber}`,
+        name: "New Member",
+        email: "newmember@email.com",
+        phone: "",
+        tier: "Member",
+        status: "Active"
+      }
+    ]);
   }
 
   return (
@@ -28,6 +55,8 @@ export default function ManageMembershipsPage() {
         <h1 className="mt-2 text-4xl font-semibold">Manage Memberships</h1>
         <p className="mt-3 text-sm leading-7 text-white/55">Edit member records, tiers, access, status, and contact information.</p>
       </header>
+
+      {saved && <div className="rounded-2xl bg-[#e8ddc8] p-4 text-sm font-semibold text-black">Changes saved.</div>}
 
       {members.map((member, index) => (
         <section key={member.id} className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl">
@@ -43,15 +72,15 @@ export default function ManageMembershipsPage() {
             <Field label="Tier" value={member.tier} onChange={(value) => updateMember(index, "tier", value)} />
             <Field label="Status" value={member.status} onChange={(value) => updateMember(index, "status", value)} />
           </div>
-
-          <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#e8ddc8] px-5 py-4 font-semibold text-black">
-            <Save className="h-5 w-5" /> Save Member
-          </button>
         </section>
       ))}
 
-      <button className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-5 py-4 font-semibold text-white">
+      <button onClick={addNewMember} className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-5 py-4 font-semibold text-white">
         <UserPlus className="h-5 w-5" /> Add New Member
+      </button>
+
+      <button onClick={saveMembers} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#e8ddc8] px-5 py-4 font-semibold text-black">
+        {saved ? <Check className="h-5 w-5" /> : <Save className="h-5 w-5" />} Save All Memberships
       </button>
     </div>
   );
