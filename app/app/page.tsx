@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CalendarDays, Newspaper, QrCode } from "lucide-react";
+import { CalendarDays, Newspaper, QrCode, Settings } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
 const member = {
@@ -39,9 +39,14 @@ export default function AppHomePage() {
         <p className="text-sm text-white/50">Welcome back,</p>
         <h1 className="mt-1 text-4xl font-semibold tracking-tight">{member.name}</h1>
         <p className="mt-2 text-sm text-orange-100/70">{member.tier}</p>
+        {member.tier === "Admin" && (
+          <Link href="/app/admin" className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#e8ddc8] px-4 py-3 text-sm font-semibold text-black">
+            <Settings className="h-4 w-4" /> Admin Management
+          </Link>
+        )}
       </section>
 
-      <section className="rounded-3xl bg-white p-6 text-black shadow-2xl">
+      <section className="rounded-3xl bg-[#e8ddc8] p-6 text-black shadow-2xl">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs uppercase tracking-widest text-black/45">Member ID</p>
@@ -49,8 +54,8 @@ export default function AppHomePage() {
           </div>
           <QrCode className="h-7 w-7" />
         </div>
-        <div className="mt-6 flex justify-center rounded-3xl border border-black/10 bg-white p-4">
-          <QRCodeSVG value={qrValue} size={210} includeMargin />
+        <div className="mt-6 flex justify-center rounded-3xl border border-black/10 bg-[#e8ddc8] p-4">
+          <QRCodeSVG value={qrValue} size={210} includeMargin bgColor="#e8ddc8" fgColor="#000000" />
         </div>
         <p className="mt-4 text-center text-xs uppercase tracking-widest text-black/45">Scan for member check-in</p>
       </section>
@@ -70,7 +75,7 @@ export default function AppHomePage() {
         {events.map((event) => (
           <article key={event.title} className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-xl">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black"><CalendarDays className="h-6 w-6" /></div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e8ddc8] text-black"><CalendarDays className="h-6 w-6" /></div>
               <div><h3 className="font-semibold">{event.title}</h3><p className="mt-1 text-sm text-white/55">{event.date}</p><p className="mt-2 text-xs uppercase tracking-widest text-orange-100/60">{event.status}</p></div>
             </div>
           </article>
